@@ -12,3 +12,5 @@ Health damage can be seen in the output log.
 Enemy Follows the main player if in the range.
 
 Death animation when Enemy Health Reaches 0.
+
+Press Escape key to quit the level.
