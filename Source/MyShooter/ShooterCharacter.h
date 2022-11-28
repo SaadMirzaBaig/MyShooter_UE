@@ -18,6 +18,10 @@ public:
 	// Sets default values for this character's properties
 	AShooterCharacter();
 
+	UFUNCTION(BlueprintPure)
+		bool IsDead() const; // to change the animation when health finishes
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -45,5 +49,5 @@ private:
 		float Health;
 
 	UPROPERTY(VisibleAnywhere)
-		float MaxHealth = 100;
+		float MaxHealth = 50;
 };

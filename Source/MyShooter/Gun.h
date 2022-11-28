@@ -33,7 +33,7 @@ private:
 		USkeletalMeshComponent* Mesh;
 
 	UPROPERTY(EditAnywhere)
-		float maxRange = 5000;
+		float maxRange = 10000;
 
 	UPROPERTY(EditAnywhere)
 		UParticleSystem* ImpactEffect;
