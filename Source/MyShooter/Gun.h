@@ -14,6 +14,7 @@ class MYSHOOTER_API AGun : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AGun();
+	void PullTrigger();
 
 protected:
 	// Called when the game starts or when spawned
@@ -30,5 +31,14 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 		USkeletalMeshComponent* Mesh;
+
+	UPROPERTY(EditAnywhere)
+		float maxRange = 5000;
+
+	UPROPERTY(EditAnywhere)
+		UParticleSystem* ImpactEffect;
+
+	UPROPERTY(EditAnywhere)
+		float Damage = 10;
 
 };

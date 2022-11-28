@@ -3,6 +3,7 @@
 
 #include "Gun.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AGun::AGun()
@@ -31,3 +32,42 @@ void AGun::Tick(float DeltaTime)
 
 }
 
+void AGun::PullTrigger()
+{
+	//UE_LOG(LogTemp, Warning, TEXT("Bang!"));
+
+	APawn* OwnerPawn = Cast<APawn>(GetOwner());
+	
+	if (OwnerPawn == nullptr)
+		return;
+
+	AController* OwnerController = OwnerPawn->GetController();
+
+	if (OwnerController == nullptr)
+		return;
+
+	FVector Location;
+	FRotator Rotation;
+
+	OwnerController->GetPlayerViewPoint(Location, Rotation);
+
+	FVector End = Location + Rotation.Vector() * maxRange;
+
+	FHitResult Hit;
+	bool bulletSuccess = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_GameTraceChannel1);
+
+	if (bulletSuccess)
+	{
+		FVector ShotDirection = -Rotation.Vector();
+
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactEffect, Hit.Location, ShotDirection.Rotation());
+
+		AActor* HitActor = Hit.GetActor();
+
+		if (HitActor != nullptr)
+		{
+			FPointDamageEvent DamageEvent(Damage, Hit, ShotDirection, nullptr);
+			HitActor->TakeDamage(Damage, DamageEvent, OwnerController, this);
+		}
+	}
+}
