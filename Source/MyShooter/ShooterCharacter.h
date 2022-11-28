@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "ShooterCharacter.generated.h"
 
+
+class AGun;
+
 UCLASS()
 class MYSHOOTER_API AShooterCharacter : public ACharacter
 {
@@ -29,4 +32,10 @@ public:
 private:
 	void MoveForward(float AxisValue);
 	void MoveSideways(float AxisValue);
+
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<AGun> GunClass;
+
+	UPROPERTY()
+		AGun* Gun;
 };
