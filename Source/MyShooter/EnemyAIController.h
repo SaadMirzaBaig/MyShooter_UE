@@ -10,7 +10,6 @@
  * 
  */
 
-//class AShooterCharacter;
 
 UCLASS()
 class MYSHOOTER_API AEnemyAIController : public AAIController
@@ -23,10 +22,5 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-//private:
-//	UPROPERTY(EditDefaultsOnly)
-//		TSubclassOf<AShooterCharacter> ShooterClass;
-//
-//	UPROPERTY()
-//		AShooterCharacter* Shooter;
+
 };

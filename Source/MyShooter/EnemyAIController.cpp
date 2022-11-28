@@ -3,7 +3,7 @@
 
 #include "EnemyAIController.h"
 #include "Kismet/GameplayStatics.h"
-//#include "ShooterCharacter.h"
+#include "ShooterCharacter.h"
 
 
 void AEnemyAIController::BeginPlay()
@@ -28,8 +28,6 @@ void AEnemyAIController::Tick(float DeltaSeconds)
            ClearFocus(EAIFocusPriority::Gameplay);
            StopMovement();
     }
-    //if (!Shooter->IsDead())
-    //{
-    //    MoveToActor(PlayerPawn, 400);
-    //}
+    
+
 }
